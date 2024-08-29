@@ -13,10 +13,10 @@ export class todoRepository extends Repository<TodoEntity> {
   }
 
   async list(params: {
-    page: Number;
-    perPage: Number;
+    page: number;
+    perPage: number;
     createdAt?: Date;
-    dificuldade?: Number;
+    dificuldade?: number;
     search?: String;
     finalizado?: Boolean;
     //parâmetros com "?" não são obrigatórios
