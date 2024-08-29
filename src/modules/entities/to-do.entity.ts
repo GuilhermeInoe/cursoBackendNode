@@ -22,4 +22,7 @@ export class TodoEntity extends BaseEntity{
 
   @DeleteDateColumn()
   deletedAt: Date | null
+
+  @Column()
+  default : false
 }
