@@ -1,9 +1,15 @@
 import { Injectable } from '@nestjs/common';
-import { Between, ILike, NumericType, Repository } from 'typeorm';
-import { TodoEntity } from '../entities/to-do.entity';
+import { Between, DataSource, ILike, NumericType, Repository } from 'typeorm';
+import { TodoEntity } from '../../todo/entities/to-do.entity';
+import { InjectDataSource, InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
 export class todoRepository extends Repository<TodoEntity> {
+  constructor(
+    @InjectRepository(TodoEntity) repository: Repository<TodoEntity>,
+  ) {
+    super(repository.target, repository.manager);
+  }
   async getOneById(id: string): Promise<TodoEntity> {
     const entity = this.findOneBy({
       id,
@@ -55,7 +61,7 @@ export class todoRepository extends Repository<TodoEntity> {
       where,
       skip,
       order: {
-        complete: 'ASC',
+        finalizado: 'ASC',
         createdAt: 'DESC',
       },
     });

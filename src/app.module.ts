@@ -3,10 +3,11 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { SnakeNamingStrategy } from 'typeorm-naming-strategies';
+import { toDoModule } from './modules/todo.module';
 
 @Module({
   imports: [TypeOrmModule.forRoot({
-    driver: "postgresql",
+    type: "postgres",
     database: "to-do",
     host: "ep-aged-dust-a5mobltt.us-east-2.aws.neon.tech",
     port: 5432,
@@ -17,7 +18,7 @@ import { SnakeNamingStrategy } from 'typeorm-naming-strategies';
     autoLoadEntities: true,
     uuidExtension: "pgcrypto",
     namingStrategy: new SnakeNamingStrategy(),
-  })],
+  }), toDoModule],
   controllers: [AppController],
   providers: [AppService],
 })

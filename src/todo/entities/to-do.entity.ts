@@ -8,8 +8,10 @@ export class TodoEntity extends BaseEntity{
   @Column()
   text: string
 
-  @Column()
-  complete: boolean
+  @Column({
+    default: false
+  })
+  finalizado: boolean
 
   @Column()
   dificuldade: number
@@ -23,6 +25,4 @@ export class TodoEntity extends BaseEntity{
   @DeleteDateColumn()
   deletedAt: Date | null
 
-  @Column()
-  default : false
 }
